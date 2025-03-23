@@ -9,9 +9,11 @@ var projectile = preload("res://projectile.tscn")
 
 func _physics_process(delta):
 	
-	# get input and modify speed
+	# get input and move the player
 	velocity = Input.get_vector("left", "right", "up", "down")
 	velocity *= speed
+	move_and_slide()
+	
 	
 	moving = false
 	var suffix = "_idle" # these strings should match the animation names
@@ -31,30 +33,15 @@ func _physics_process(delta):
 	var animation = $AnimatedSprite2D
 	animation.play(dir + suffix)
 	
-	move_and_slide()
-	
-	
-	
-
-		#"up":
-			#animation.play("side_walk")
-		#"down":
-			#animation.play("side_walk")
 	
 	if Input.is_action_just_pressed("fire"):
+		# create an instance of the projectile
 		var instance = projectile.instantiate()
-		
 		var direction = get_global_mouse_position() - self.position
 		direction = direction.normalized()
 		instance.global_position = self.global_position
 		instance.rotation = atan2(direction.y, direction.x)
 		instance.linear_velocity = direction * 500
-		self.get_parent().add_child(instance)
-		print("fire")
-	
-
-func _input(event):
-	pass
-	
-	
+		# add the instance to the scene
+		get_tree().get_current_scene().add_child(instance)
 	
