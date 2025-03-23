@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlek2sl4eiky7"]
+
+[ext_resource type="Script" uid="uid://dyef86vvvgtw0" path="res://player.gd" id="1_f3sb7"]
+[ext_resource type="Texture2D" uid="uid://s5xiwaxxnaj3" path="res://icon.svg" id="2_fj7yv"]
+[ext_resource type="SpriteFrames" uid="uid://byjiinc8ypipp" path="res://player_animations.tres" id="3_tlwt5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
+size = Vector2(36, 70)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlwt5"]
+size = Vector2(128, 128)
+
+[node name="World" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_f3sb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 13)
+shape = SubResource("RectangleShape2D_fj7yv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+scale = Vector2(2, 2)
+sprite_frames = ExtResource("3_tlwt5")
+animation = &"up_walk"
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(139, 28)
+collision_layer = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+texture = ExtResource("2_fj7yv")
