@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://0gskrvrqq8ec"]
+[gd_scene load_steps=4 format=3 uid="uid://0gskrvrqq8ec"]
 
 [ext_resource type="Texture2D" uid="uid://s5xiwaxxnaj3" path="res://icon.svg" id="1_a85iw"]
+[ext_resource type="Script" uid="uid://sm03mgaf7cmh" path="res://projectile.gd" id="1_qxf0c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qxf0c"]
 size = Vector2(64, 12)
@@ -9,6 +10,9 @@ size = Vector2(64, 12)
 collision_layer = 2
 collision_mask = 4
 gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_qxf0c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.555288, 0.159818, 0.341664, 1)
@@ -17,3 +21,5 @@ texture = ExtResource("1_a85iw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_qxf0c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
