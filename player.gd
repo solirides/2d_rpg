@@ -10,15 +10,16 @@ var projectile = preload("res://projectile.tscn")
 var enemy = preload("res://enemy.tscn")
 
 func _physics_process(delta):
-	
+	#### movement ####
 	# get input and move the player
 	velocity = Input.get_vector("left", "right", "up", "down")
 	velocity *= speed
 	move_and_slide()
 	
-	
+	#### animation ####
 	moving = false
 	var suffix = "_idle" # these strings should match the animation names
+	# select the correct animation for the movement direction
 	if velocity.length() > 0:
 		moving = true
 		suffix = "_walk"
@@ -35,7 +36,7 @@ func _physics_process(delta):
 	var animation = $AnimatedSprite2D
 	animation.play(dir + suffix)
 	
-	
+	#### inputs ####
 	if Input.is_action_just_pressed("fire"):
 		# create an instance of the projectile
 		var instance = projectile.instantiate()
@@ -49,9 +50,11 @@ func _physics_process(delta):
 		get_tree().get_root().add_child(instance)
 	
 	if Input.is_action_just_pressed("summon"):
+		# create an instance of the enemy and place it at the cursor
 		var instance = enemy.instantiate()
 		instance.global_position = get_global_mouse_position()
-		instance.player = self
+		# set the "target" variable to the player
+		instance.target = self
 		# add the instance to the scene
 		get_tree().get_root().add_child(instance)
 
@@ -61,3 +64,4 @@ func damage(amount):
 	health -= amount
 	if health <= 0:
 		queue_free()
+	
