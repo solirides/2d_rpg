@@ -1,10 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://0gskrvrqq8ec"]
+[gd_scene load_steps=9 format=3 uid="uid://0gskrvrqq8ec"]
 
-[ext_resource type="Texture2D" uid="uid://s5xiwaxxnaj3" path="res://icon.svg" id="1_a85iw"]
 [ext_resource type="Script" uid="uid://sm03mgaf7cmh" path="res://projectile.gd" id="1_qxf0c"]
+[ext_resource type="Texture2D" uid="uid://r1w8wccpti8e" path="res://fireball/FB001.png" id="2_dac07"]
+[ext_resource type="Texture2D" uid="uid://cs58jjsne0cka" path="res://fireball/FB002.png" id="3_0c7x6"]
+[ext_resource type="Texture2D" uid="uid://bh32uxhg3dc2a" path="res://fireball/FB003.png" id="4_wpwum"]
+[ext_resource type="Texture2D" uid="uid://bofqug2820tt5" path="res://fireball/FB004.png" id="5_nsmhe"]
+[ext_resource type="Texture2D" uid="uid://candh6v7duunu" path="res://fireball/FB005.png" id="6_1umjp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxf0c"]
-size = Vector2(64, 12)
+[sub_resource type="SpriteFrames" id="SpriteFrames_se2ie"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dac07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0c7x6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wpwum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_nsmhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1umjp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dac07"]
+radius = 19.026299
 
 [node name="Projectile" type="RigidBody2D"]
 collision_layer = 2
@@ -14,12 +41,14 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_qxf0c")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.555288, 0.159818, 0.341664, 1)
-scale = Vector2(0.5, 0.1)
-texture = ExtResource("1_a85iw")
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-23, 3)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_se2ie")
+autoplay = "default"
+frame_progress = 0.25632414
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_qxf0c")
+shape = SubResource("CircleShape2D_dac07")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
