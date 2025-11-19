@@ -1,7 +1,8 @@
 extends RigidBody2D
 
 func _on_body_entered(body: Node) -> void:
-	print("collide")
+	# just for debugging
+	print("projectile collided")
 	# if the body is an enemy, damage it then delete the projectile
 	if body.is_in_group("enemy"):
 		body.damage(20)

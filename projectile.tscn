@@ -41,7 +41,7 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_qxf0c")
 
-[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-23, 3)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_se2ie")

@@ -47,7 +47,7 @@ func _physics_process(delta):
 		instance.rotation = atan2(direction.y, direction.x)
 		instance.linear_velocity = direction * 500
 		# add the instance to the scene
-		get_tree().get_root().add_child(instance)
+		get_tree().get_current_scene().add_child(instance)
 	
 	if Input.is_action_just_pressed("summon"):
 		# create an instance of the enemy and place it at the cursor
@@ -56,12 +56,16 @@ func _physics_process(delta):
 		# set the "target" variable to the player
 		instance.target = self
 		# add the instance to the scene
-		get_tree().get_root().add_child(instance)
+		get_tree().get_current_scene().add_child(instance)
 
+# same function as the one in enemy.gd
 func damage(amount):
 	modulate = Color(1,0,0)
 	create_tween().tween_property(self, "modulate", Color(1,1,1), 0.4)
 	health -= amount
 	if health <= 0:
 		queue_free()
+		# just for debugging
+		print("you died!")
+		
 	

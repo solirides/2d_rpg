@@ -28,7 +28,10 @@ func try_attack():
 			# start the attack cooldown
 			attack_ready = false
 			$Timer.start()
-	
+
+func _on_timer_timeout() -> void:
+	# end the attack cooldown
+	attack_ready = true
 
 func damage(amount):
 	# animate the damage flash
@@ -39,7 +42,3 @@ func damage(amount):
 	if health <= 0:
 		# delete the node if its health reaches 0
 		queue_free()
-
-func _on_timer_timeout() -> void:
-	# end the attack cooldown
-	attack_ready = true
