@@ -64,8 +64,10 @@ func damage(amount):
 	create_tween().tween_property(self, "modulate", Color(1,1,1), 0.4)
 	health -= amount
 	if health <= 0:
-		queue_free()
-		# just for debugging
 		print("you died!")
-		
-	
+		# show the game over screen
+		$GameOver.visible = true
+
+func revive():
+	$GameOver.visible = false
+	health = 100

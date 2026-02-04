@@ -10,5 +10,5 @@ func _on_body_entered(body: Node) -> void:
 	
 	# if the body is a wall (a physics body in layer 3),
 	# delete the projectile
-	if body.get_collision_layer_value(3):
+	if body is TileMapLayer or body.get_collision_layer_value(3):
 		queue_free()

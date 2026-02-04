@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://o7cvp1to7aaw"]
+
+[ext_resource type="Script" uid="uid://c57e6l13tho4" path="res://game_over.gd" id="1_y26ei"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xapjj"]
+font_size = 70
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y26ei"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.46619856, 0.41898867, 0.6460745, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yxx3c"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.40754795, 0.36135316, 0.6187811, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ccer4"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.27970576, 0.26375532, 0.50726396, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_8u835"]
+Button/font_sizes/font_size = 40
+Button/styles/hover = SubResource("StyleBoxFlat_y26ei")
+Button/styles/normal = SubResource("StyleBoxFlat_yxx3c")
+Button/styles/pressed = SubResource("StyleBoxFlat_ccer4")
+
+[node name="GameOver" type="Control" unique_id=1603101054]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y26ei")
+
+[node name="Label" type="Label" parent="." unique_id=957502380]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.14814815
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Died!"
+label_settings = SubResource("LabelSettings_xapjj")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1726163363]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.63
+anchor_right = 0.5
+anchor_bottom = 0.63
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ReviveButton" type="Button" parent="VBoxContainer" unique_id=1214227011]
+layout_mode = 2
+theme = SubResource("Theme_8u835")
+text = "Revive"
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=1298129522]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="RestartButton" type="Button" parent="VBoxContainer" unique_id=102451506]
+layout_mode = 2
+theme = SubResource("Theme_8u835")
+text = "Restart"
+
+[node name="Control2" type="Control" parent="VBoxContainer" unique_id=1758627850]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1970829952]
+layout_mode = 2
+theme = SubResource("Theme_8u835")
+text = "Return to main menu"
+
+[connection signal="pressed" from="VBoxContainer/ReviveButton" to="." method="_on_revive_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

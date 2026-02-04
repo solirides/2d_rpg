@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="2d_rpg"
-run/main_scene="uid://dlek2sl4eiky7"
-config/features=PackedStringArray("4.5", "Forward Plus")
+run/main_scene="uid://dijv16spsxa5j"
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [input]
@@ -58,3 +62,4 @@ summon={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.14, 0.077, 0.09485, 1)
